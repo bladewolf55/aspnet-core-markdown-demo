@@ -47,7 +47,7 @@
   </header>
 
   <section id="markdown-editor">
-    <textarea id="markdown" onkeyup="showHtml();">
+    <textarea id="markdown">
     </textarea>
   </section>
 
@@ -62,38 +62,39 @@
 
 <script>
 
-  var textareas = document.getElementsByTagName('textarea');
-  var count = textareas.length;
-  for (var i = 0; i < count; i++) {
-    textareas[i].onkeydown = function (e) {
-      if (e.keyCode == 9 || e.which == 9) {
-        e.preventDefault();
-        var s = this.selectionStart;
-        var sub = "\t";
-        this.value = this.value.substring(0, this.selectionStart) + sub + this.value.substring(this.selectionEnd);
-        this.selectionEnd = s + sub.length;
+  (function main() {
+
+    setMarkdownTextAreaToUseTabs();
+    setMarkdownTextAreaToShowPreview();
+
+    function setMarkdownTextAreaToShowPreview() {
+      var textArea = document.getElementById("markdown");
+      textArea.onkeyup = showHtml;
+    }
+
+    //https://stackoverflow.com/a/14166052/1628707
+    function setMarkdownTextAreaToUseTabs() {
+      var textArea = document.getElementById("markdown");
+      textArea.onkeydown = function (e) {
+          if (e.keyCode == 9 || e.which == 9) {
+            e.preventDefault();
+            var s = this.selectionStart;
+            var sub = "\t";
+            this.value = this.value.substring(0, this.selectionStart) + sub + this.value.substring(this.selectionEnd);
+            this.selectionEnd = s + sub.length;
+          }
       }
     }
-  }
 
-  ////https://stackoverflow.com/a/14166052/1628707
-  //function tabToSpaces(e) {
-  //  if (e.keyCode == 9 || e.which == 9) {
-  //    e.preventDefault();
-  //    var s = this.selectionStart;
-  //    this.value = this.value.substring(0, this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
-  //    this.selectionEnd = s + 1;
-  //  }
-  //}
+    function showHtml() {
+      var xhttp = new XMLHttpRequest()
+      xhttp.open("POST", "http://localhost:60897/api/markdown", false);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      var markdown = document.getElementById("markdown").value;
+      xhttp.send("markdown=" + markdown);
+      var preview = document.getElementById("html-preview");
+      preview.innerHTML = xhttp.responseText;
+    }
+  })(); 
 
-
-  function showHtml() {
-    var xhttp = new XMLHttpRequest()
-    xhttp.open("POST", "http://localhost:60897/api/markdown", false);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    var markdown = document.getElementById("markdown").value;
-    xhttp.send("markdown=" + markdown);
-    var preview = document.getElementById("html-preview");
-    preview.innerHTML = xhttp.responseText;
-  }
 </script>
