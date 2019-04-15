@@ -23,10 +23,15 @@ namespace AspNetCore1
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 //To use startup class naming conventions
-                .UseStartup(typeof(Startup).GetTypeInfo().Assembly.FullName);
+                .UseStartup(typeof(Startup).GetTypeInfo().Assembly.FullName)
                 //To use a single Startup class + method naming conventions
                 //.UseStartup<Startup>();
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.SetBasePath(Directory.GetCurrentDirectory());
+                })
 
+                ;
 
         //Probably the better way for class naming conventions. It's what's shown in MS documentation.
         //public static IWebHostBuilder CreateWebHostBuilderOtherWay(string[] args)

@@ -5,7 +5,8 @@
 
 #markdown-editor, #html-preview {
     float: left;
-    width: 45%;
+    margin-top: 15px;
+    width: 93%;
     border: solid 1px gray;
     height: 400px;
     padding: 10px;
@@ -23,6 +24,17 @@
     overflow: auto;
 }
 
+footer {
+    padding-top: 15px;
+}
+
 .clear {
     clear: both;
+}
+
+@media only screen and (min-width: 768px) {
+    /* for desktop */
+    #markdown-editor, #html-preview {
+        width: 45%;
+    }
 }

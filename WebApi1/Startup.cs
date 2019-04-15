@@ -44,8 +44,6 @@ namespace WebApi1
             app.UseCors(policy =>
             {
                 policy.AllowAnyOrigin();
-                policy.AllowAnyHeader();
-                policy.AllowAnyMethod();
             });
 
             app.UseHttpsRedirection();
