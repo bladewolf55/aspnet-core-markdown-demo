@@ -9,36 +9,9 @@
   <meta name="viewport" content="width=device-width" />
   <title>Markdown Demo ASP.NET Core - Charles L Flatt</title>
   <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Fira Mono', monospace;
-      tab-size: 4;
-    }
-
-    #markdown-editor, #html-preview {
-      float: left;
-      width: 45%;
-      border: solid 1px gray;
-      height: 400px;
-      padding: 10px;
-    }
-
-      #markdown-editor textarea {
-        width: 99%;
-        height: 99%;
-        border: none;
-        outline: none;
-        resize: none;
-      }
-
-    #html-preview {
-      overflow: auto;
-    }
-
-    .clear {
-      clear: both;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css?family=Assistant:200,300" rel="stylesheet">
+  <link href="~/css/site.css" rel="stylesheet" />
+  <link href="~/css/html-preview.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -48,6 +21,35 @@
 
   <section id="markdown-editor">
     <textarea id="markdown">
+# About
+This is a simplistic demo using ASP.NET Core. As Markdown is entered, it is sent to
+a WebApi that converts the Markdown to HTML, which is returned and displayed.
+
+# Techniques
+Several techniques are explored in the source code, even if not shown in the project.
+
+# Other Markdown Examples
+## Heading 2
+Each heading is styled, of course.
+
+### Heading 3
+Bullets and Numbering work. The textarea's Tab keydown is overriden to stay within the textarea.
+*   I found sample code for overriding the tab key. I don't feel bad about that.
+    *   (I could have figure it out. I've dealt with key presses since Visual Basic 5)
+*   Call me old-fashioned, but I like building software this way:
+    1.  Worry about functionality first
+    2.  Get the simplest foundations working
+    3.  Build on the foundations, expecting significant refactoring and changes
+
+That's simple enough[^1].
+
+[^1]: And not old-fashioned at all.
+
+#### Heading 4
+Why do I insist on using Git? Because I've used version control since Visual SourceSafe. 
+Git has its problems, but having used it's branch-merge model I never want to go back to 
+centralized systems.
+
     </textarea>
   </section>
 
@@ -66,6 +68,7 @@
 
     setMarkdownTextAreaToUseTabs();
     setMarkdownTextAreaToShowPreview();
+    showHtml();
 
     function setMarkdownTextAreaToShowPreview() {
       var textArea = document.getElementById("markdown");
@@ -95,6 +98,7 @@
       var preview = document.getElementById("html-preview");
       preview.innerHTML = xhttp.responseText;
     }
+
   })(); 
 
 </script>

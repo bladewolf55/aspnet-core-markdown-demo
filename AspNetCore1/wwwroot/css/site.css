@@ -1,0 +1,28 @@
+﻿body {
+    font-family: 'Fira Mono', monospace;
+    tab-size: 4;
+}
+
+#markdown-editor, #html-preview {
+    float: left;
+    width: 45%;
+    border: solid 1px gray;
+    height: 400px;
+    padding: 10px;
+}
+
+    #markdown-editor textarea {
+        width: 99%;
+        height: 99%;
+        border: none;
+        outline: none;
+        resize: none;
+    }
+
+#html-preview {
+    overflow: auto;
+}
+
+.clear {
+    clear: both;
+}
