@@ -1,0 +1,95 @@
+﻿@{
+  Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Markdown Demo ASP.NET Core - Charles L Flatt</title>
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fira Mono', monospace;
+      tab-size: 4;
+    }
+
+    #markdown-editor, #html-preview {
+      float: left;
+      width: 48%;
+      border: solid 1px gray;
+      height: 400px;
+      padding: 10px;
+    }
+
+      #markdown-editor textarea {
+        width: 99%;
+        height: 99%;
+        border: none;
+        outline: none;
+        resize: none;
+      }
+
+    .clear {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Markdown Demo</h1>
+  </header>
+
+  <section id="markdown-editor">
+    <textarea id="markdown" onkeyup="showHtml();">
+    </textarea>
+  </section>
+
+  <section id="html-preview"></section>
+
+  <footer class="clear">
+    Copyright &copy; Charles L Flatt
+  </footer>
+
+</body>
+</html>
+
+<script>
+
+  var textareas = document.getElementsByTagName('textarea');
+  var count = textareas.length;
+  for (var i = 0; i < count; i++) {
+    textareas[i].onkeydown = function (e) {
+      if (e.keyCode == 9 || e.which == 9) {
+        e.preventDefault();
+        var s = this.selectionStart;
+        var sub = "\t";
+        this.value = this.value.substring(0, this.selectionStart) + sub + this.value.substring(this.selectionEnd);
+        this.selectionEnd = s + sub.length;
+      }
+    }
+  }
+
+  ////https://stackoverflow.com/a/14166052/1628707
+  //function tabToSpaces(e) {
+  //  if (e.keyCode == 9 || e.which == 9) {
+  //    e.preventDefault();
+  //    var s = this.selectionStart;
+  //    this.value = this.value.substring(0, this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+  //    this.selectionEnd = s + 1;
+  //  }
+  //}
+
+
+  function showHtml() {
+    var xhttp = new XMLHttpRequest()
+    xhttp.open("POST", "http://localhost:60897/api/markdown", false);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var markdown = document.getElementById("markdown").value;
+    xhttp.send("markdown=" + markdown);
+    var preview = document.getElementById("html-preview");
+    preview.innerHTML = xhttp.responseText;
+  }
+</script>

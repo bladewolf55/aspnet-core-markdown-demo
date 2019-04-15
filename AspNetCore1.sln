@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore1", "AspNetCore1\AspNetCore1.csproj", "{6375CB5B-2736-4C8D-9E68-4B5AC740B8FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi1", "WebApi1\WebApi1.csproj", "{1758BAB3-439B-437C-9BF3-3D4463127541}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6375CB5B-2736-4C8D-9E68-4B5AC740B8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6375CB5B-2736-4C8D-9E68-4B5AC740B8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6375CB5B-2736-4C8D-9E68-4B5AC740B8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6375CB5B-2736-4C8D-9E68-4B5AC740B8FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1758BAB3-439B-437C-9BF3-3D4463127541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1758BAB3-439B-437C-9BF3-3D4463127541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1758BAB3-439B-437C-9BF3-3D4463127541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1758BAB3-439B-437C-9BF3-3D4463127541}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFD77B21-E260-4944-BF63-E21E58316511}
+	EndGlobalSection
+EndGlobal
