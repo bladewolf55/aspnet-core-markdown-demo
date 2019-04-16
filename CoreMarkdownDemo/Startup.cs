@@ -35,11 +35,18 @@ namespace AspNetCore1
         //NOTE: This method is not being run when the environment is Development. Instead, ConfigureDevelopment is run.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //These two settings reproduces a traditional web site behvior
+            //If there's a default file, e.g. index.html, display it
+            app.UseDefaultFiles();
+            //If the URL points to a static file, display it
+            app.UseStaticFiles();
 
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{Id?}");
+            });
 
             app.Run(async (context) =>
             {
